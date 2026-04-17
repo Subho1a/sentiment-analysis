@@ -137,9 +137,9 @@ Sentiment-Analysis-Using-ML/
 - Random Forest: ~75%
 
 ### Improved Models
-- **Logistic Regression + NGrams + Grid Search**: ~82-84%
-- **Random Forest + NGrams**: ~79-81%
-- **Ensemble Voting Classifier**: ~82-85% ⭐
+- **Logistic Regression + NGrams + Grid Search**: ~69-70%
+- **Random Forest + NGrams**: ~68-69%
+- **Ensemble Voting Classifier**: ~69.14% ⭐
 
 ### Optimization Techniques Applied
 ✅ N-grams (bigrams for phrase capture)  
@@ -272,8 +272,8 @@ streamlit run app.py
 
 | Metric | Value |
 |--------|-------|
-| Final Model Accuracy | 82-85% |
-| Test Set Accuracy | 81-84% |
+| Final Model Accuracy | 69.14% |
+| Test Set Accuracy | 69.75% |
 | Best Model | Ensemble Voting or GridSearch Optimized LR |
 | Training Time | ~5-10 minutes |
 | Prediction Time (per tweet) | <10ms |
