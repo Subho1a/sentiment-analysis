@@ -1,7 +1,10 @@
 # 🐦 Twitter Sentiment Analysis Using Machine Learning
 
 A comprehensive machine learning project that analyzes Twitter sentiment using scikit-learn, with a Streamlit web application for real-time predictions.
-
+---
+## Live Demo 
+🔗 **Try the App:**
+[Sentiment-Analysis](https://sentiment-analysis-twitter-1dc.streamlit.app/)
 ## 📋 Project Overview
 
 This project implements a multi-model sentiment analysis system that classifies tweets into three categories:
