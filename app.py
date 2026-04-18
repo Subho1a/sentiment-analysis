@@ -14,21 +14,26 @@ from nltk.corpus import stopwords
 from nltk.tokenize import word_tokenize
 from nltk.stem import WordNetLemmatizer
 
-# Download required NLTK resources
-@st.cache_resource
+# Download required NLTK resources (run once at startup)
+@st.cache_resource(show_spinner=False)
 def download_nltk_resources():
+    import ssl
     try:
-        nltk.data.find('corpora/stopwords')
-    except LookupError:
-        nltk.download('stopwords')
-    try:
-        nltk.data.find('tokenizers/punkt')
-    except LookupError:
-        nltk.download('punkt')
-    try:
-        nltk.data.find('corpora/wordnet')
-    except LookupError:
-        nltk.download('wordnet')
+        _create_unverified_https_context = ssl._create_unverified_context
+    except AttributeError:
+        pass
+    else:
+        ssl._create_default_https_context = _create_unverified_https_context
+    
+    resources = ['stopwords', 'punkt_tab', 'wordnet', 'omw-1.4']
+    for resource in resources:
+        try:
+            if 'tokenizers' in resource or resource == 'punkt_tab':
+                nltk.data.find(f'tokenizers/{resource}')
+            else:
+                nltk.data.find(f'corpora/{resource}')
+        except LookupError:
+            nltk.download(resource, quiet=True)
 
 download_nltk_resources()
 
