@@ -92,17 +92,24 @@ def load_model():
     import os
     
     model_path = "models/sentiment_model.pkl"
+    zip_path = "models/sentiment_model.zip"
     encoder_path = "models/label_encoder.pkl"
     metadata_path = "models/metadata.pkl"
     
     # Check if model files exist
-    if not all(os.path.exists(p) for p in [model_path, encoder_path, metadata_path]):
+    if not (os.path.exists(model_path) or os.path.exists(zip_path)) or not os.path.exists(encoder_path) or not os.path.exists(metadata_path):
         st.error("❌ Model files not found! Please run the notebook first to generate the pickle files.")
         st.stop()
     
     # Load the trained model
-    with open(model_path, 'rb') as f:
-        pipeline = pickle.load(f)
+    if os.path.exists(model_path):
+        with open(model_path, 'rb') as f:
+            pipeline = pickle.load(f)
+    elif os.path.exists(zip_path):
+        import zipfile
+        with zipfile.ZipFile(zip_path, 'r') as z:
+            with z.open('models/sentiment_model.pkl') as f:
+                pipeline = pickle.load(f)
     
     # Load the label encoder
     with open(encoder_path, 'rb') as f:

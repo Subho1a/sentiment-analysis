@@ -1,2 +1,2 @@
-/DataSet
-/models
+/DataSet/training*.csv
+/models/sentiment_model.pkl
